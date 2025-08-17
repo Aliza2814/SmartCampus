@@ -1,0 +1,139 @@
+/* Background */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* background: linear-gradient(135deg, #159957, #155799); */
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Box */
+.login-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Icon */
+.icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Title */
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #155799;
+}
+
+.subtitle {
+  margin: 0.2rem 0 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Input */
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+  color:#155799;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+/* Options */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+}
+
+/* Forgot password link */
+.forgot {
+  font-size: 0.85rem;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.forgot:hover {
+  color: #159957;  /* matches your page theme */
+  text-decoration: underline;
+  transform: scale(1.02);
+}
+
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #159957, #155799, #159957); /* matches page */
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Hover Effect */
+.btn:hover {
+  background: linear-gradient(135deg, #17a46d, #1d66b0); /* brighter tones */
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+/* Click Animation */
+.btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+
+/* Signup text */
+.signup {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.signup a {
+  color: #155799;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.signup a:hover {
+  color: #159957; /* green from page theme */
+  text-decoration: underline;
+  transform: scale(1.05);
+}
