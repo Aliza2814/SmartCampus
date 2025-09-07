@@ -1,0 +1,252 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f4f6fa;
+  color: #1e293b;
+  height: 100vh;
+}
+
+/* Sidebar */
+aside.sidebar {
+    width: 260px;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    background: #0f172a;
+    color: #e5e7eb;
+    padding: 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.brand .logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2b9c92, #3bb4a6);
+    box-shadow: 0 6px 16px rgba(43, 156, 146, 0.35);
+}
+
+.nav {
+    margin-top: 6px;
+    display: grid;
+    gap: 6px;
+}
+
+.nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    padding: 10px 12px;
+    border-radius: 12px;
+    transition: 120ms ease;
+}
+
+.nav a:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nav a.active {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.tools {
+    margin-top: auto;
+    display: grid;
+    gap: 8px;
+}
+
+.tool-btn {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #e5e7eb;
+    cursor: pointer;
+}
+
+/* Main Section */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search {
+  width: 300px;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.profile img {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Page Content */
+.content {
+  padding: 25px;
+  overflow-y: auto;
+}
+
+.content h1 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+/* Stats Section */
+.stats {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.stats h2 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-card p {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+}
+
+/* Upload Box */
+.upload-box {
+  border: 2px dashed #94a3b8;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+  background: #f8fafc;
+}
+
+.upload-box p {
+  font-size: 1.1rem;
+  color: #475569;
+}
+
+.upload-box span {
+  display: block;
+  margin: 10px 0;
+  color: #94a3b8;
+}
+
+.upload-btn {
+  padding: 10px 20px;
+  background: #38bdf8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background: #0ea5e9;
+}
+
+/* Documents Grid */
+.documents h2 {
+  margin-bottom: 15px;
+}
+
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.doc-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.doc-card:hover {
+  transform: translateY(-3px);
+}
+
+.doc-icon {
+  font-size: 2rem;
+}
+
+.doc-name {
+  margin: 10px 0;
+  color: #334155;
+  font-weight: 500;
+  font-size: 0.95rem;
+  word-wrap: break-word;
+}
+
+.doc-actions button {
+  margin: 3px;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #e2e8f0;
+}
+
+.doc-actions button:hover {
+  background: #cbd5e1;
+}

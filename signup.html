@@ -70,6 +70,9 @@
     const form = document.getElementById("signupForm");
 
     form.addEventListener("submit", function (e) {
+      // 1. Prevent the form from submitting by default
+      e.preventDefault();
+
       let valid = true;
 
       const name = document.getElementById("name");
@@ -79,6 +82,7 @@
       const password = document.getElementById("password");
       const confirmPassword = document.getElementById("confirmPassword");
 
+      // --- All your existing validation checks ---
       if (name.value.trim() === "") {
         document.getElementById("nameError").style.display = "block";
         valid = false;
@@ -109,8 +113,25 @@
         document.getElementById("confirmError").style.display = "block";
         valid = false;
       } else { document.getElementById("confirmError").style.display = "none"; }
+      
 
-      if (!valid) e.preventDefault();
+      // 2. Check if the form is valid AFTER all checks are done
+      if (valid) {
+        alert("Sign up successful! Redirecting...");
+        
+        // In a real application, you would send data to a server here.
+        
+        // 3. Redirect based on the selected role
+        const selectedRole = role.value;
+
+        if (selectedRole === 'student') {
+          // Redirect to the student's page
+          window.location.href = 'index.html';
+        } else if (selectedRole === 'teacher') {
+          // Redirect to the teacher's page
+          window.location.href = 'teacher-dashboard.html';
+        }
+      }
     });
   </script>
 </body>
