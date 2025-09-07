@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCampus - Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="signup-card">
+    <h1>Create Account</h1>
+    <p>Join SmartCampus Today</p>
+
+    <form id="signupForm" novalidate>
+      <div class="grid-2">
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Enter your name">
+          <div class="error" id="nameError">Name is required.</div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="student@university.edu">
+          <div class="error" id="emailError">Enter a valid email.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="role">You are a</label>
+          <select id="role">
+            <option value="">Select</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+          <div class="error" id="roleError">Please select a role.</div>
+        </div>
+
+        <div class="field">
+          <label for="idInput">ID</label>
+          <input type="text" id="idInput" placeholder="Enter your ID">
+          <div class="error" id="idError">ID is required.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password">
+          <div class="error" id="passwordError">Password must be at least 6 characters.</div>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" placeholder="Re-enter password">
+          <div class="error" id="confirmError">Passwords do not match.</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn primary">Sign Up</button>
+
+      <div class="login-link">
+        Already have an account? <a href="login.html">Log in</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("signupForm");
+
+    form.addEventListener("submit", function (e) {
+      let valid = true;
+
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const role = document.getElementById("role");
+      const idInput = document.getElementById("idInput");
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+
+      if (name.value.trim() === "") {
+        document.getElementById("nameError").style.display = "block";
+        valid = false;
+      } else { document.getElementById("nameError").style.display = "none"; }
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
+      if (!email.value.match(emailPattern)) {
+        document.getElementById("emailError").style.display = "block";
+        valid = false;
+      } else { document.getElementById("emailError").style.display = "none"; }
+
+      if (role.value === "") {
+        document.getElementById("roleError").style.display = "block";
+        valid = false;
+      } else { document.getElementById("roleError").style.display = "none"; }
+
+      if (idInput.value.trim() === "") {
+        document.getElementById("idError").style.display = "block";
+        valid = false;
+      } else { document.getElementById("idError").style.display = "none"; }
+
+      if (password.value.length < 6) {
+        document.getElementById("passwordError").style.display = "block";
+        valid = false;
+      } else { document.getElementById("passwordError").style.display = "none"; }
+
+      if (confirmPassword.value !== password.value) {
+        document.getElementById("confirmError").style.display = "block";
+        valid = false;
+      } else { document.getElementById("confirmError").style.display = "none"; }
+
+      if (!valid) e.preventDefault();
+    });
+  </script>
+</body>
+</html>

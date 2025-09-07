@@ -1,139 +1,142 @@
-/* Background */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  /* background: linear-gradient(135deg, #159957, #155799); */
-  background: linear-gradient(135deg, #0f766e, #14b8a6);
-  height: 100vh;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: #f4f6fa;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-/* Container */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-card {
+  background: #ffffff;
+  padding: 48px 60px 40px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border: 1px solid rgba(43, 156, 146, 0.15);
   width: 100%;
-}
-
-/* Box */
-.login-box {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 360px;
+  max-width: 420px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease forwards;
 }
 
-/* Icon */
-.icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Title */
-h2 {
+.login-card h1 {
+  font-size: 22px;
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #155799;
+  color: #0f172a;
 }
 
-.subtitle {
-  margin: 0.2rem 0 1.5rem;
-  color: #666;
-  font-size: 0.9rem;
+.login-card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 6px 0 28px;
 }
 
-/* Input */
 .input-group {
-  margin-bottom: 1rem;
   text-align: left;
-  color:#155799;
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .input-group input {
   width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  outline: none;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(43, 156, 146, 0.25);
+  background: #f9fafb;
+  font-size: 15px;
+  transition: all 0.2s ease;
 }
 
-/* Options */
+.input-group input:focus {
+  outline: none;
+  border-color: #2b9c92;
+  box-shadow: 0 0 0 3px rgba(43, 156, 146, 0.2);
+  background: #ffffff;
+}
+
+.error {
+  display: none;
+  color: #e11d48;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
 .options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
-  font-size: 0.85rem;
+  font-size: 13px;
+  margin-bottom: 22px;
+  color: #374151;
+  padding: 0 2px;
 }
 
-/* Forgot password link */
-.forgot {
-  font-size: 0.85rem;
-  color: #555;
+.options a {
+  color: #2b9c92;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-/* Hover effect */
-.forgot:hover {
-  color: #159957;  /* matches your page theme */
+.options a:hover {
   text-decoration: underline;
+  color: #006d65;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  background: linear-gradient(135deg, #2b9c92, #3bb4a6);
+  color: #fff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  margin-top: 6px;
+}
+
+.btn:hover {
+  opacity: 0.9;
   transform: scale(1.02);
 }
 
-
-/* Button */
-.btn {
-  width: 100%;
-  padding: 0.9rem;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #159957, #155799, #159957); /* matches page */
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* Hover Effect */
-.btn:hover {
-  background: linear-gradient(135deg, #17a46d, #1d66b0); /* brighter tones */
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
-}
-
-/* Click Animation */
 .btn:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transform: scale(0.98);
 }
 
-
-/* Signup text */
 .signup {
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  font-size: 13px;
+  margin-top: 20px;
+  color: #374151;
 }
 
 .signup a {
-  color: #155799;
-  font-weight: bold;
+  color: #2b9c92;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-/* Hover effect */
 .signup a:hover {
-  color: #159957; /* green from page theme */
   text-decoration: underline;
-  transform: scale(1.05);
+  color: #006d65;
 }
