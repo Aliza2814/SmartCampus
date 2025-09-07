@@ -137,6 +137,21 @@ header.topbar {
     font-size: 14px;
 }
 
+
+
+.user-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e2e8f0; 
+    display: grid;
+    place-items: center; 
+    font-weight: 600;
+    color: #475569; 
+    cursor: pointer; 
+}
+
+
 .chip {
     font-size: 12px;
     color: #6b7280;
@@ -144,22 +159,6 @@ header.topbar {
     border-radius: 999px;
     border: 1px dashed rgba(43, 156, 146, 0.2);
     /* Simplified from color-mix */
-}
-
-.icon-btn {
-    border: 0;
-    background: #ffffff;
-    border: 1px solid rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-}
-
-.clock {
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
 }
 
 /* Main container */

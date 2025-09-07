@@ -7,11 +7,42 @@
     <link rel="stylesheet" href="comps_tch.css" />
   </head>
   <body>
+    <aside class="sidebar">
+            <div class="brand">
+                <div class="logo"></div>
+                <div>SmartCampus</div>
+            </div>
+            <nav class="nav">
+                <a href="../teacher.html" >🏠 Dashboard</a>
+                <a href="myvault.html">📂 MyVault</a>
+                <a href="comps_tch.html" class="active">📢 Complaints</a>
+                <a href="lost_found.html">🔎 Lost & Found</a>
+                <a href="teacher-attendance.html">📅 Attendance</a>
+                <a href="to_do_list.html" >📝 To-Do</a>
+                <a href="#">🗓️ Calendar</a>
+            </nav>            
+            <div class="tools">
+                <button class="tool-btn" id="toggleTheme">🌗 Toggle Dark</button>
+                <button class="tool-btn" id="openDrawer">🔔 Notifications</button>
+            </div>
+        </aside>
+
+        <main>
+
+          <header class="topbar">
+                <div class="topbar-inner">
+                    <div class="search" style="min-width:260px;">
+                        🔎 <input id="search" placeholder="Search features, files, events... " />
+                    </div>
+                    <!-- <div class="clock" id="clock">16:55</div> -->
+                    <div class="user-profile">AS</div>
+                </div>
+        </header>
     <div class="container">
-      <header>
+      <div class="head">
         <h1>Complaint Management</h1>
         <p>Review, track, and update student complaints</p>
-      </header>
+      </div>
 
       <div class="card">
         <h2>Student Complaints Overview</h2>
@@ -56,6 +87,7 @@
         </table>
       </div>
     </div>
+    </main>
   </body>
 </html>
 

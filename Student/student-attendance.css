@@ -152,9 +152,16 @@ header.topbar {
     cursor: pointer;
 }
 
-.clock {
-    font-variant-numeric: tabular-nums;
+.user-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e2e8f0; 
+    display: grid;
+    place-items: center; 
     font-weight: 600;
+    color: #475569; 
+    cursor: pointer; 
 }
 
 /* Main container */
