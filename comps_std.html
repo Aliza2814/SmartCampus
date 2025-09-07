@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartCampus Reports</title>
+    <link rel="stylesheet" href="comps_std.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>SmartCampus Complaints</h1>
+        <p>Submit issues and track your complaints in real-time</p>
+      </header>
+      <div class="card">
+        <h2>Submit a New Complaint</h2>
+        <form id="reportForm" class="report-form">
+          <input type="text" id="title" placeholder="Complaint Title" required />
+          <textarea
+            id="description"
+            rows="3"
+            placeholder="Issue Description"
+            required
+          ></textarea>
+          <button type="submit">Submit Complaint</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Submitted Complaints</h2>
+        <table class="reports-table" id="reportsTable">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Date & Time</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("reportForm");
+      const reportsTable = document.querySelector("#reportsTable tbody");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById("title").value.trim();
+        const desc = document.getElementById("description").value.trim();
+
+        if (!title || !desc) return;
+
+        const now = new Date();
+        const timestamp = now.toLocaleString();
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${title}</td>
+          <td>${desc}</td>
+          <td>${timestamp}</td>
+          <td><span class="status">Pending</span></td>
+          <td><button class="btn delete">Delete</button></td>
+        `;
+
+        reportsTable.appendChild(row);
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
