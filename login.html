@@ -1,40 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SmartCampus Login</title>
-  <link rel="stylesheet" href="login.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCampus - Login</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-box">
-      <div class="logo">
-        logo
+  <div class="login-card">
+    <h1>Welcome to SmartCampus</h1>
+    <p>Your Real-Time Campus Assistant</p>
+
+    <form id="loginForm" novalidate>
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="student@university.edu" required>
+        <div class="error" id="emailError">Enter a valid email.</div>
       </div>
-      <h2>Welcome to SmartCampus</h2>
-      <p class="subtitle">Your Real-Time Campus Assistant</p>
 
-      <form id="loginForm">
-        <div class="input-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="student@university.edu" required>
-        </div>
-        <div class="input-group">
-            <label for="password"></label>
-            <input type="password" id="password" placeholder="Password" required>
-        </div>
-        <div class="options">   
-            <label for="remeberMe"><input type="checkbox" id="rememberMe"> Remember Me</label>         
-            <a href="#" class="forgot">Forgot password?</a>
-        </div>
-        <button type="submit" class="btn">Sign In</button>
-      </form>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+        <div class="error" id="passwordError">Password must be at least 6 characters.</div>
+      </div>
 
-      <p class="signup">Don't have an account? <a href="#">Sign up</a></p>
-    </div>
+      <div class="options">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn">Sign In</button>
+
+      <div class="signup">
+        Don’t have an account? <a href="signup.html">Sign up</a>
+      </div>
+    </form>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let emailError = document.getElementById("emailError");
+      let passwordError = document.getElementById("passwordError");
+
+      let isValid = true;
+      emailError.style.display = "none";
+      passwordError.style.display = "none";
+
+      if (email === "" || !/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(email)) {
+        emailError.style.display = "block";
+        isValid = false;
+      }
+      if (password.length < 6) {
+        passwordError.style.display = "block";
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Login successful (demo)");
+        
+      }
+    });
+  </script>
 </body>
 </html>
