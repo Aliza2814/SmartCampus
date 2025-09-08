@@ -110,9 +110,7 @@ header.topbar {
     z-index: 50;
     backdrop-filter: saturate(140%) blur(8px);
     background: rgba(244, 246, 250, 0.85);
-    /* Simplified from color-mix */
     border-bottom: 1px solid rgba(43, 156, 146, 0.1);
-    /* Simplified from color-mix */
 }
 
 .topbar-inner {

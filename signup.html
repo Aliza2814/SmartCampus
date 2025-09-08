@@ -11,50 +11,44 @@
     <h1>Create Account</h1>
     <p>Join SmartCampus Today</p>
 
-    <form id="signupForm" novalidate>
+    <form id="signupForm">
       <div class="grid-2">
         <div class="field">
           <label for="name">Full Name</label>
-          <input type="text" id="name" placeholder="Enter your name">
-          <div class="error" id="nameError">Name is required.</div>
+          <input type="text" id="name" placeholder="Enter your name" required>
         </div>
 
         <div class="field">
           <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="student@university.edu">
-          <div class="error" id="emailError">Enter a valid email.</div>
+          <input type="email" id="email" placeholder="student@university.edu" required>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="field">
           <label for="role">You are a</label>
-          <select id="role">
+          <select id="role" required>
             <option value="">Select</option>
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
           </select>
-          <div class="error" id="roleError">Please select a role.</div>
         </div>
 
         <div class="field">
           <label for="idInput">ID</label>
-          <input type="text" id="idInput" placeholder="Enter your ID">
-          <div class="error" id="idError">ID is required.</div>
+          <input type="text" id="idInput" placeholder="Enter your ID" required>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="field">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter password">
-          <div class="error" id="passwordError">Password must be at least 6 characters.</div>
+          <input type="password" id="password" placeholder="Enter password" minlength="6" required>
         </div>
 
         <div class="field">
           <label for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" placeholder="Re-enter password">
-          <div class="error" id="confirmError">Passwords do not match.</div>
+          <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
         </div>
       </div>
 
@@ -68,69 +62,15 @@
 
   <script>
     const form = document.getElementById("signupForm");
+    const role = document.getElementById("role");
 
-    form.addEventListener("submit", function (e) {
-      // 1. Prevent the form from submitting by default
-      e.preventDefault();
+    form.addEventListener("submit", function(e) {
+      e.preventDefault(); 
 
-      let valid = true;
-
-      const name = document.getElementById("name");
-      const email = document.getElementById("email");
-      const role = document.getElementById("role");
-      const idInput = document.getElementById("idInput");
-      const password = document.getElementById("password");
-      const confirmPassword = document.getElementById("confirmPassword");
-
-      // --- All your existing validation checks ---
-      if (name.value.trim() === "") {
-        document.getElementById("nameError").style.display = "block";
-        valid = false;
-      } else { document.getElementById("nameError").style.display = "none"; }
-
-      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
-      if (!email.value.match(emailPattern)) {
-        document.getElementById("emailError").style.display = "block";
-        valid = false;
-      } else { document.getElementById("emailError").style.display = "none"; }
-
-      if (role.value === "") {
-        document.getElementById("roleError").style.display = "block";
-        valid = false;
-      } else { document.getElementById("roleError").style.display = "none"; }
-
-      if (idInput.value.trim() === "") {
-        document.getElementById("idError").style.display = "block";
-        valid = false;
-      } else { document.getElementById("idError").style.display = "none"; }
-
-      if (password.value.length < 6) {
-        document.getElementById("passwordError").style.display = "block";
-        valid = false;
-      } else { document.getElementById("passwordError").style.display = "none"; }
-
-      if (confirmPassword.value !== password.value) {
-        document.getElementById("confirmError").style.display = "block";
-        valid = false;
-      } else { document.getElementById("confirmError").style.display = "none"; }
-      
-
-      // 2. Check if the form is valid AFTER all checks are done
-      if (valid) {
-        alert("Sign up successful! Redirecting...");
-        
-        // In a real application, you would send data to a server here.
-        
-        // 3. Redirect based on the selected role
-        const selectedRole = role.value;
-
-        if (selectedRole === 'student') {
-          // Redirect to the student's page
-          window.location.href = 'index.html';
-        } else if (selectedRole === 'teacher') {
-          // Redirect to the teacher's page
-          window.location.href = 'teacher-dashboard.html';
-        }
+      if (role.value === "student") {
+        window.location.href = "index.html";
+      } else if (role.value === "teacher") {
+        window.location.href = "teacher.html";
       }
     });
   </script>
