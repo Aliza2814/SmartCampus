@@ -16,7 +16,6 @@ body {
     overflow-y: overlay;
 }
 
-/* Layout */
 .app {
     display: grid;
     grid-template-columns: 260px 1fr;
@@ -127,7 +126,6 @@ header.topbar {
     gap: 10px;
     background: #ffffff;
     border: 1px solid rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
     border-radius: 999px;
     padding: 10px 14px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -141,8 +139,6 @@ header.topbar {
     color: #1f2937;
     font-size: 14px;
 }
-
-
 
 .user-profile {
     width: 40px;
@@ -163,7 +159,6 @@ header.topbar {
     padding: 6px 10px;
     border-radius: 999px;
     border: 1px dashed rgba(43, 156, 146, 0.2);
-    /* Simplified from color-mix */
 }
 
 /* Main container */
@@ -175,7 +170,7 @@ header.topbar {
     gap: 18px;
 }
 
-/* Welcome / Stats */
+/* Welcome */
 .welcome {
     background: linear-gradient(135deg, #2b9c92, #3bb4a6);
     padding: 24px;
@@ -266,7 +261,6 @@ header.topbar {
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
 }
 
 .list {
@@ -281,7 +275,6 @@ header.topbar {
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px dashed rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
 }
 
 .list li:last-child {
@@ -341,9 +334,7 @@ header.topbar {
 
 .day {
     background: #f8f9fc;
-    /* Simplified from color-mix */
     border: 1px solid rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
     border-radius: 10px;
     min-height: 94px;
     padding: 8px;
@@ -373,7 +364,6 @@ header.topbar {
 
 .empty {
     border: 2px dashed rgba(43, 156, 146, 0.25);
-    /* Simplified from color-mix */
     background: transparent;
 }
 
@@ -399,7 +389,6 @@ header.topbar {
     padding: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
 }
 
 .modal-card h3 {
@@ -423,7 +412,6 @@ header.topbar {
     padding: 10px 12px;
     border-radius: 10px;
     border: 1px solid rgba(43, 156, 146, 0.2);
-    /* Simplified from color-mix */
     background: #f4f6fa;
     color: #1f2937;
 }
@@ -439,7 +427,6 @@ header.topbar {
     padding: 10px 12px;
     border-radius: 10px;
     border: 1px solid rgba(43, 156, 146, 0.2);
-    /* Simplified from color-mix */
     background: #ffffff;
     cursor: pointer;
 }
@@ -456,41 +443,6 @@ header.topbar {
     border: 0;
 }
 
-/* Right drawer (notifications & settings) */
-.drawer {
-    position: fixed;
-    top: 0;
-    right: -360px;
-    width: 320px;
-    height: 100vh;
-    background: #ffffff;
-    color: #1f2937;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    transition: right .2s ease;
-    border-left: 1px solid rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
-    z-index: 55;
-    display: flex;
-    flex-direction: column;
-}
-
-.drawer.open {
-    right: 0;
-}
-
-.drawer h4 {
-    padding: 14px;
-    border-bottom: 1px solid rgba(43, 156, 146, 0.15);
-    /* Simplified from color-mix */
-    margin: 0;
-}
-
-.drawer .content {
-    padding: 12px;
-    display: grid;
-    gap: 10px;
-    overflow: auto;
-}
 
 /* FAB */
 .fab {
@@ -511,27 +463,6 @@ header.topbar {
     font-size: 24px;
 }
 
-/* Theme palette */
-.palette {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.swatch {
-    width: 24px;
-    height: 24px;
-    border-radius: 999px;
-    cursor: pointer;
-    border: 2px solid rgba(255, 255, 255, .6);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
-}
-
-/* Tiny helpers */
 .muted {
     color: white;
-}
-
-.hidden {
-    display: none;
 }
