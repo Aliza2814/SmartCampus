@@ -184,17 +184,6 @@ main{
   position: relative;
 }
 
-.card h2::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 60px;
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(135deg, #2b9c92, #3bb4a6);
-}
-
 /* Reports table */
 .reports-table {
   width: 100%;
@@ -217,10 +206,6 @@ main{
   text-align: left;
 }
 
-.reports-table tbody tr:nth-child(odd) {
-  background: #f9fafb;
-}
-
 .reports-table tbody tr:hover {
   background: #eefcfb;
 }
@@ -233,11 +218,4 @@ select.status-select {
   background: #f9fafb;
   font-size: 13px;
   cursor: pointer;
-}
-
-select.status-select:focus {
-  outline: none;
-  border-color: #2b9c92;
-  background: #ffffff;
-  box-shadow: 0 0 0 2px rgba(43, 156, 146, 0.15);
 }
