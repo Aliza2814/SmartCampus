@@ -21,10 +21,10 @@
                 <a href="to_do_list.html" >📝 To-Do</a>
                 <a href="../index.html#calendarSection">🗓️ Calendar</a>
             </nav>            
-            <div class="tools">
-                <button class="tool-btn" id="toggleTheme">🌗 Toggle Dark</button>
-                <button class="tool-btn" id="openDrawer">🔔 Notifications</button>
-            </div>
+            <!-- <div class="tools">
+                <button class="tool-btn" id="toggleTheme">Toggle Dark</button>
+                <button class="tool-btn" id="openDrawer">Notifications</button>
+            </div> -->
         </aside>
 
         <main>
@@ -74,34 +74,5 @@
       </div>
     </div>
     </main>
-
-    <script>
-      const form = document.getElementById("reportForm");
-      const reportsTable = document.querySelector("#reportsTable tbody");
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const title = document.getElementById("title").value.trim();
-        const desc = document.getElementById("description").value.trim();
-
-        if (!title || !desc) return;
-
-        const now = new Date();
-        const timestamp = now.toLocaleString();
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${title}</td>
-          <td>${desc}</td>
-          <td>${timestamp}</td>
-          <td><span class="status">Pending</span></td>
-          <td><button class="btn delete">Delete</button></td>
-        `;
-
-        reportsTable.appendChild(row);
-        form.reset();
-      });
-    </script>
   </body>
 </html>

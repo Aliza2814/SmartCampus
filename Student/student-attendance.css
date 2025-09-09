@@ -16,7 +16,6 @@ body {
     overflow-y: overlay;
 }
 
-/* Layout */
 .app {
     display: grid;
     grid-template-columns: 260px 1fr;
@@ -75,7 +74,6 @@ aside.sidebar {
     color: inherit;
     padding: 10px 12px;
     border-radius: 12px;
-    transition: 120ms ease;
 }
 
 .nav a:hover {
@@ -108,7 +106,6 @@ header.topbar {
     position: sticky;
     top: 0;
     z-index: 50;
-    backdrop-filter: saturate(140%) blur(8px);
     background: rgba(244, 246, 250, 0.85);
     border-bottom: 1px solid rgba(43, 156, 146, 0.1);
 }
@@ -235,7 +232,6 @@ header.topbar {
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(43, 156, 146, 0.15);
-    transition: transform .15s ease, box-shadow .15s ease;
 }
 
 .card:hover {
@@ -463,7 +459,6 @@ header.topbar {
     background: #ffffff;
     color: #1f2937;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    transition: right .2s ease;
     border-left: 1px solid rgba(43, 156, 146, 0.15);
     z-index: 55;
     display: flex;
@@ -552,7 +547,7 @@ header.topbar {
 }
 
 /* Container for the subject-wise breakdown cards */
-.subject-breakdown .panel-content {
+.subject-breakdown .Subjects {
     margin-top: 14px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -617,7 +612,6 @@ header.topbar {
 .progress-fill {
     height: 100%;
     border-radius: 999px;
-    transition: width 0.5s ease-out;
 }
 
 .progress-fill.high {
@@ -628,43 +622,6 @@ header.topbar {
     background: linear-gradient(90deg, #f43f5e, #f97316);
 }
 
-/* Styles for Bunks Breakdown Modal */
-#bunks-stat-trigger {
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-#bunks-stat-trigger:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.bunks-list {
-    margin-top: 16px;
-}
-
-.bunks-list li {
-    padding: 12px 0;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.bunks-list .chip {
-    font-weight: 700;
-    font-size: 14px;
-}
-
-/* Modal CSS-only trick */
-.modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  place-items: center;
-  background: rgba(0,0,0,.35);
-  z-index: 60;
-}
-.modal:target {
-  display: grid;
-}
 /* --- Attendance Comparison Bar Chart --- */
 .bar-chart {
   display: flex;

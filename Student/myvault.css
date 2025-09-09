@@ -66,7 +66,6 @@ aside.sidebar {
     color: inherit;
     padding: 10px 12px;
     border-radius: 12px;
-    transition: 120ms ease;
 }
 
 .nav a:hover {
@@ -106,7 +105,6 @@ header.topbar {
     position: sticky;
     top: 0;
     z-index: 50;
-    backdrop-filter: saturate(140%) blur(8px);
     background: rgba(244, 246, 250, 0.85);
     border-bottom: 1px solid rgba(43, 156, 146, 0.1);
 }
@@ -252,7 +250,6 @@ header.topbar {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 15px;
   text-align: center;
-  transition: transform 0.2s ease;
 }
 
 .doc-card:hover {
