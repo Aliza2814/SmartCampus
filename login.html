@@ -29,13 +29,44 @@
         <a href="#">Forgot password?</a>
       </div>
 
-      <button type="submit" class="btn">Log In</button>
+      <button type="submit" class="btn">Sign In</button>
 
       <div class="signup">
-        Don't have an account? <a href="signup.html">Sign up</a>
+        Don’t have an account? <a href="signup.html">Sign up</a>
       </div>
     </form>
   </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let emailError = document.getElementById("emailError");
+      let passwordError = document.getElementById("passwordError");
+
+      let isValid = true;
+      emailError.style.display = "none";
+      passwordError.style.display = "none";
+
+      if (email === "" || !/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(email)) {
+        emailError.style.display = "block";
+        isValid = false;
+      }
+      if (password.length < 6) {
+        passwordError.style.display = "block";
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Login successful (demo)");
+        
+      }
+    });
+  </script>
 </body>
 </html>
+
+
 
