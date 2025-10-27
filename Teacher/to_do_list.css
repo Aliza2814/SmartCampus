@@ -316,6 +316,7 @@ header.topbar {
     font-size: 0.8rem;
     font-weight: 600;
     color: white;
+    text-transform: capitalize;
 }
 
 .tag-academic {

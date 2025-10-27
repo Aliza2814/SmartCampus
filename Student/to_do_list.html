@@ -78,93 +78,144 @@
                 </div>
 
                 <div class="panel">
-                    <ul class="task-list">
-                        <li>
-                            <div class="task-item">
-                                <div class="task-check"><input type="checkbox"></div>
-                                <div class="task-details">
-                                    <div class="task-title">Read chapters 4-5 of History textbook</div>
-                                    <div class="task-meta">
-                                        <span class="tag tag-academic">Academic</span>
-                                        <span>Due: Today (Sep 6, 2025)</span>
-                                    </div>
-                                </div>
-                                <div class="task-actions">
-                                    <button class="action-btn" title="Edit">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </button>
-                                    <button class="action-btn" title="Delete">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </div>
-
-                            </div>
-                        </li>
-                        <li class="completed">
-                            <div class="task-item">
-                                <div class="task-check"><input type="checkbox" checked></div>
-                                <div class="task-details">
-                                    <div class="task-title">Buy groceries for the week</div>
-                                    <div class="task-meta">
-                                        <span class="tag tag-personal">Personal</span>
-                                        <span>Due: Sep 3, 2025</span>
-                                    </div>
-                                </div>
-                                <div class="task-actions">
-                                    <button class="action-btn" title="Edit">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </button>
-                                    <button class="action-btn" title="Delete">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="task-item">
-                                <div class="task-check"><input type="checkbox"></div>
-                                <div class="task-details">
-                                    <div class="task-title">Submit final project proposal</div>
-                                    <div class="task-meta">
-                                        <span class="tag tag-academic">Academic</span>
-                                        <span>Due: Sep 8, 2025</span>
-                                    </div>
-                                </div>
-                                <div class="task-actions">
-                                    <button class="action-btn" title="Edit">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </button>
-                                    <button class="action-btn" title="Delete">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="task-item">
-                                <div class="task-check"><input type="checkbox"></div>
-                                <div class="task-details">
-                                    <div class="task-title">Prepare presentation for Robotics Club</div>
-                                    <div class="task-meta">
-                                        <span class="tag tag-club">Club Activity</span>
-                                        <span>Due: Sep 10, 2025</span>
-                                    </div>
-                                </div>
-                                <div class="task-actions">
-                                    <button class="action-btn" title="Edit">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </button>
-                                    <button class="action-btn" title="Delete">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+    <ul class="task-list">
+        </ul>
+</div>
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskForm = document.querySelector('.add-task-form');
+            const taskTitleInput = document.getElementById('task-title');
+            const taskCategoryInput = document.getElementById('task-category');
+            const taskDateInput = document.getElementById('task-due-date');
+            const taskList = document.querySelector('.task-list');
+            const filterBar = document.querySelector('.filter-bar');
+
+            // Load tasks from localStorage or start with an empty array
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            let currentFilter = 'all';
+
+            // Function to save tasks to localStorage
+            const saveTasks = () => {
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            };
+
+            // Main function to render all tasks
+            const renderTasks = () => {
+                taskList.innerHTML = ''; // Clear the list
+
+                // Filter tasks based on the current filter
+                const tasksToRender = tasks.filter(task => {
+                    if (currentFilter === 'pending') return !task.completed;
+                    if (currentFilter === 'completed') return task.completed;
+                    return true; // 'all'
+                });
+
+                if (tasksToRender.length === 0) {
+                    taskList.innerHTML = '<li class="empty-message">No tasks to show.</li>';
+                }
+
+                tasksToRender.forEach(task => {
+                    const li = document.createElement('li');
+                    li.className = task.completed ? 'completed' : '';
+                    li.dataset.id = task.id;
+
+                    li.innerHTML = `
+                        <div class="task-item">
+                            <div class="task-check"><input type="checkbox" ${task.completed ? 'checked' : ''}></div>
+                            <div class="task-details">
+                                <div class="task-title">${task.title}</div>
+                                <div class="task-meta">
+                                    <span class="tag tag-${task.category}">${task.category}</span>
+                                    <span>Due: ${task.dueDate || 'No date'}</span>
+                                </div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="action-btn" title="Edit">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </button>
+                                <button class="action-btn" title="Delete">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    taskList.appendChild(li);
+                });
+            };
+
+            // Event: Add a new task
+            taskForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const title = taskTitleInput.value.trim();
+                if (!title) return; // Don't add empty tasks
+
+                const newTask = {
+                    id: Date.now(),
+                    title: title,
+                    category: taskCategoryInput.value,
+                    dueDate: taskDateInput.value,
+                    completed: false
+                };
+
+                tasks.push(newTask);
+                saveTasks();
+                renderTasks();
+                taskForm.reset();
+            });
+
+            // Event: Handle clicks on the task list (complete, edit, delete)
+            taskList.addEventListener('click', (e) => {
+                const li = e.target.closest('li[data-id]');
+                if (!li) return;
+                
+                const taskId = Number(li.dataset.id);
+                const task = tasks.find(t => t.id === taskId);
+
+                // Toggle complete
+                if (e.target.matches('input[type="checkbox"]')) {
+                    task.completed = e.target.checked;
+                    li.classList.toggle('completed', task.completed);
+                    if (currentFilter !== 'all') renderTasks(); // Re-render if filtered
+                }
+                
+                // Delete task
+                if (e.target.closest('.action-btn[title="Delete"]')) {
+                    tasks = tasks.filter(t => t.id !== taskId);
+                    li.remove();
+                }
+
+                // Edit task
+                if (e.target.closest('.action-btn[title="Edit"]')) {
+                    const newTitle = prompt('Edit task:', task.title);
+                    if (newTitle && newTitle.trim()) {
+                        task.title = newTitle.trim();
+                        li.querySelector('.task-title').textContent = task.title;
+                    }
+                }
+                
+                saveTasks(); // Save changes for all actions
+            });
+
+            // Event: Handle filter button clicks
+            filterBar.addEventListener('click', (e) => {
+                const btn = e.target.closest('.filter-btn');
+                if (!btn) return;
+
+                filterBar.querySelector('.active').classList.remove('active');
+                btn.classList.add('active');
+                currentFilter = btn.textContent.toLowerCase();
+                renderTasks();
+            });
+
+            // Initial render on page load
+            renderTasks();
+        });
+    </script>
+    
 </body>
 
 </html>

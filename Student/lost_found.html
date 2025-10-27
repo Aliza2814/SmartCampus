@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -16,17 +17,17 @@
         <div>SmartCampus</div>
       </div>
       <nav class="nav">
-        <a href="../index.html">🏠 Dashboard</a>
+        <a href="../teacher.html">🏠 Dashboard</a>
         <a href="myvault.html">📂 MyVault</a>
-        <a href="comps_std.html">📢 Complaints</a>
+        <a href="comps_tch.html">📢 Complaints</a>
         <a href="lost_found.html" class="active">🔎 Lost & Found</a>
-        <a href="student-attendance.html">📅 Attendance</a>
+        <a href="teacher-attendance.html">📅 Attendance</a>
         <a href="to_do_list.html">📝 To-Do</a>
-        <a href="../index.html#calendarSection">🗓️ Calendar</a>
+        <a href="../teacher.html#calendarSection">🗓️ Calendar</a>
       </nav>
       <div class="tools">
-        <button class="tool-btn" id="toggleTheme">🌗 Toggle Dark</button>
-        <button class="tool-btn" id="openDrawer">🔔 Notifications</button>
+        <!-- <button class="tool-btn" id="toggleTheme"> Toggle Dark</button>
+        <button class="tool-btn" id="openDrawer"> Notifications</button> -->
       </div>
     </aside>
 
@@ -36,6 +37,7 @@
           <div class="search" style="min-width:260px;">
             🔎 <input id="search" placeholder="Search features, files, events... " />
           </div>
+          <!-- <div class="clock" id="clock">16:55</div> -->
           <div class="user-profile">AS</div>
         </div>
       </header>
@@ -64,8 +66,9 @@
               <h3>Student ID Card</h3>
               <span class="tag tag-found">Found</span>
             </div>
-            <p>Found a student ID card for 'Rohit Sharma' on the floor of the cafeteria. Left it with the cashier at
-              the main counter.</p>
+            <p>Found a student ID card for 'Ayushi Sharma' on the floor of the cafeteria. Left it with the cashier at
+              the
+              main counter.</p>
             <div class="card-meta">
               <div class="meta-item"><span></span><strong>Found At:</strong> Cafeteria</div>
               <div class="meta-item"><span></span><strong>Date:</strong> September 4, 2025</div>
@@ -83,8 +86,8 @@
             <p>Found an iPhone with a clear case on a bench in the central quad. The screen is on, but it's locked.
               Currently holding onto it.</p>
             <div class="card-meta">
-              <div class="meta-item"><strong>Found At:</strong> Central Quad Bench</div>
-              <div class="meta-item"><strong>Date:</strong> September 3, 2025</div>
+              <div class="meta-item"><span></span><strong>Found At:</strong> Central Quad Bench</div>
+              <div class="meta-item"><span></span><strong>Date:</strong> September 3, 2025</div>
             </div>
             <div class="card-footer">
               <a href="#">Claim Item →</a>
@@ -100,8 +103,8 @@
               important
               class notes for Physics 101.</p>
             <div class="card-meta">
-              <div class="meta-item"><strong>Last Seen:</strong> Near Library Entrance</div>
-              <div class="meta-item"><strong>Date:</strong> September 2, 2025</div>
+              <div class="meta-item"><span></span><strong>Last Seen:</strong> Near Library Entrance</div>
+              <div class="meta-item"><span></span><strong>Date:</strong> September 2, 2025</div>
             </div>
             <div class="card-footer">
               <a href="#">Contact Owner →</a>
@@ -117,8 +120,8 @@
               range.
               Probably left it in Room 301 or 302.</p>
             <div class="card-meta">
-              <div class="meta-item"><strong>Last Seen:</strong> Room 301, Engineering Block</div>
-              <div class="meta-item"><strong>Date:</strong> September 1, 2025</div>
+              <div class="meta-item"><span></span><strong>Last Seen:</strong> Room 301, Engineering Block</div>
+              <div class="meta-item"><span></span><strong>Date:</strong> September 1, 2025</div>
             </div>
             <div class="card-footer">
               <a href="#">Contact Owner →</a>
@@ -188,6 +191,166 @@
       </div>
     </main>
   </div>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const lostModal = document.getElementById("lostModal");
+  const foundModal = document.getElementById("foundModal");
+  const closeButtons = document.querySelectorAll(".close");
+  const lostSubmitBtn = lostModal.querySelector(".btn-submit");
+  const foundSubmitBtn = foundModal.querySelector(".btn-submit");
+  const cardGrid = document.querySelector(".card-grid");
+  const filterBtns = document.querySelectorAll(".filter-btn");
+
+  // Load existing data
+  let items = JSON.parse(localStorage.getItem("lostFoundItems")) || [];
+  renderItems();
+
+  // =======================
+  // 🔹 MODAL FUNCTIONALITY
+  // =======================
+  document.querySelectorAll('a[href="#lostModal"]').forEach(btn => {
+    btn.addEventListener("click", () => openModal(lostModal));
+  });
+
+  document.querySelectorAll('a[href="#foundModal"]').forEach(btn => {
+    btn.addEventListener("click", () => openModal(foundModal));
+  });
+
+  closeButtons.forEach(btn => {
+    btn.addEventListener("click", closeModals);
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal")) closeModals();
+  });
+
+  function openModal(modal) {
+    modal.style.display = "flex";
+  }
+
+  function closeModals() {
+    document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
+  }
+
+  // =======================
+  // 🔹 ADD LOST ITEM
+  // =======================
+  lostSubmitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("lost-item-name").value.trim();
+    const desc = document.getElementById("lost-desc").value.trim();
+    const loc = document.getElementById("lost-loc").value.trim();
+    const contact = document.getElementById("lost-contact").value.trim();
+
+    if (!name || !desc || !loc) return alert("Please fill in all required fields!");
+
+    const newItem = {
+      id: Date.now(),
+      type: "lost",
+      name,
+      desc,
+      loc,
+      contact,
+      date: new Date().toLocaleDateString()
+    };
+
+    items.push(newItem);
+    saveItems();
+    renderItems();
+    closeModals();
+    lostModal.querySelectorAll("input, textarea").forEach(i => i.value = "");
+  });
+
+  // =======================
+  // 🔹 ADD FOUND ITEM
+  // =======================
+  foundSubmitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("found-item-name").value.trim();
+    const desc = document.getElementById("found-desc").value.trim();
+    const loc = document.getElementById("found-loc").value.trim();
+    const contact = document.getElementById("found-contact").value.trim();
+
+    if (!name || !desc || !loc) return alert("Please fill in all required fields!");
+
+    const newItem = {
+      id: Date.now(),
+      type: "found",
+      name,
+      desc,
+      loc,
+      contact,
+      date: new Date().toLocaleDateString()
+    };
+
+    items.push(newItem);
+    saveItems();
+    renderItems();
+    closeModals();
+    foundModal.querySelectorAll("input, textarea").forEach(i => i.value = "");
+  });
+
+  // =======================
+  // 🔹 RENDER ITEMS
+  // =======================
+  function renderItems(filter = "all") {
+    cardGrid.innerHTML = "";
+    const filteredItems = items.filter(item => 
+      filter === "all" ? true : item.type === filter
+    );
+
+    if (filteredItems.length === 0) {
+      cardGrid.innerHTML = `<p style="text-align:center;opacity:0.7;">No items to display.</p>`;
+      return;
+    }
+
+    filteredItems.forEach(item => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <div class="card-header">
+          <h3>${item.name}</h3>
+          <span class="tag tag-${item.type}">${capitalize(item.type)}</span>
+        </div>
+        <p>${item.desc}</p>
+        <div class="card-meta">
+          <div class="meta-item"><strong>${item.type === "lost" ? "Last Seen:" : "Found At:"}</strong> ${item.loc}</div>
+          <div class="meta-item"><strong>Date:</strong> ${item.date}</div>
+        </div>
+        <div class="card-footer">
+          ${item.contact ? `<a href="mailto:${item.contact}">${item.type === "lost" ? "Contact Owner →" : "Contact Finder →"}</a>` : `<a href="#">View Details →</a>`}
+        </div>
+      `;
+      cardGrid.prepend(card);
+    });
+  }
+
+  // =======================
+  // 🔹 FILTER FUNCTIONALITY
+  // =======================
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filterType = btn.textContent.toLowerCase().includes("lost")
+        ? "lost"
+        : btn.textContent.toLowerCase().includes("found")
+        ? "found"
+        : "all";
+      renderItems(filterType);
+    });
+  });
+
+  function saveItems() {
+    localStorage.setItem("lostFoundItems", JSON.stringify(items));
+  }
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+});
+</script>
+
 </body>
 
 </html>
