@@ -281,3 +281,30 @@ header.topbar {
 .doc-actions button:hover {
   background: #cbd5e1;
 }
+
+.upload-box.dragging {
+  background-color: #f0f8ff;
+  border: 2px dashed #007bff;
+}
+.doc-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.doc-card button {
+  margin: 4px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.doc-card .view-btn {
+  background-color: #007bff;
+  color: white;
+}
+.doc-card .delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+}
