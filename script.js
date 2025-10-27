@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
     // loading the tasksssss from localStorage
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     const searchInput = document.getElementById('search');
-
 
     // gm and gn
     function updateGreeting() {
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     searchInput.addEventListener('input', filterCards);
-
 
     updateGreeting();
 });
