@@ -5,73 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmartCampus Reports</title>
     <link rel="stylesheet" href="comps_std.css" />
+    
   </head>
   <body>
     <aside class="sidebar">
-            <div class="brand">
-                <div class="logo"><img src="../img1.png"></div>
-                <div>SmartCampus</div>
-            </div>
-            <nav class="nav">
-                <a href="../index.html" >🏠 Dashboard</a>
-                <a href="myvault.html">📂 MyVault</a>
-                <a href="comps_std.html" class="active">📢 Complaints</a>
-                <a href="lost_found.html">🔎 Lost & Found</a>
-                <a href="student-attendance.html">📅 Attendance</a>
-                <a href="to_do_list.html" >📝 To-Do</a>
-                <a href="../index.html#calendarSection">🗓️ Calendar</a>
-            </nav>            
-            <!-- <div class="tools">
-                <button class="tool-btn" id="toggleTheme">Toggle Dark</button>
-                <button class="tool-btn" id="openDrawer">Notifications</button>
-            </div> -->
-        </aside>
+      <div class="brand">
+        <div class="logo"><img src="../img1.png"></div>
+        <div>SmartCampus</div>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">🏠 Dashboard</a>
+        <a href="myvault.html">📂 MyVault</a>
+        <a href="comps_std.html" class="active">📢 Complaints</a>
+        <a href="lost_found.html">🔎 Lost & Found</a>
+        <a href="student-attendance.html">📅 Attendance</a>
+        <a href="to_do_list.html">📝 To-Do</a>
+        <a href="#">🗓️ Calendar</a>
+      </nav>            
+      <div class="tools">
+        <button class="tool-btn" id="toggleTheme">🌗 Toggle Dark</button>
+        <button class="tool-btn" id="openDrawer">🔔 Notifications</button>
+      </div>
+    </aside>
 
-        <main>
-          <header class="topbar">
-                <div class="topbar-inner">
-                    <div class="search" style="min-width:260px;">
-                        🔎 <input id="search" placeholder="Search features, files, events... " />
-                    </div>
-                    <div class="user-profile">AS</div>
-                </div>
-        </header>
-    <div class="container">
-      <div class="head">
-        <h1>SmartCampus Complaints</h1>
-        <p>Submit issues and track your complaints in real-time</p>
-      </div>
-      <div class="card">
-        <h2>Submit a New Complaint</h2>
-        <form id="reportForm" class="report-form">
-          <input type="text" id="title" placeholder="Complaint Title" required />
-          <textarea
-            id="description"
-            rows="3"
-            placeholder="Issue Description"
-            required
-          ></textarea>
-          <button type="submit">Submit Complaint</button>
-        </form>
-      </div>
+    <main>
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="search" style="min-width:260px;">
+            🔎 <input id="search" placeholder="Search features, files, events... " />
+          </div>
+          <div class="user-profile">AS</div>
+        </div>
+      </header>
 
-      <div class="card">
-        <h2>Submitted Complaints</h2>
-        <table class="reports-table" id="reportsTable">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Date & Time</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+      <div class="container">
+        <div class="head">
+          <h1>SmartCampus Complaints</h1>
+          <p>Submit issues and track your complaints in real-time</p>
+        </div>
+
+        <div class="card">
+          <h2>Submit a New Complaint</h2>
+          <form id="reportForm" class="report-form">
+            <input type="text" id="title" placeholder="Complaint Title" required />
+            <textarea
+              id="description"
+              rows="3"
+              placeholder="Issue Description"
+              required
+            ></textarea>
+            <button type="submit">Submit Complaint</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Submitted Complaints</h2>
+          <table class="reports-table" id="reportsTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Dynamic rows will appear here -->
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
     </main>
+
+    <script>
+      const form = document.getElementById("reportForm");
+      const reportsTable = document.querySelector("#reportsTable tbody");
+      const toggleBtn = document.getElementById("toggleTheme");
+
+      // 🌗 Dark Mode Toggle
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+
+      // 🗑️ Delete Complaint + Toast
+      reportsTable.addEventListener("click", (e) => {
+        if (e.target.classList.contains("delete")) {
+          e.target.closest("tr").remove();
+          showToast("Complaint deleted.");
+        }
+      });
+
+      // ✅ Toast Message Function
+      function showToast(message) {
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+      }
+
+      // ✳️ Form Submission
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const title = document.getElementById("title").value.trim();
+        const desc = document.getElementById("description").value.trim();
+        if (!title || !desc) return;
+
+        const now = new Date().toLocaleString();
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${title}</td>
+          <td>${desc}</td>
+          <td>${now}</td>
+          <td><span class="status">Pending</span></td>
+          <td><button class="btn delete">Delete</button></td>
+        `;
+        reportsTable.appendChild(row);
+        form.reset();
+
+        showToast("Complaint submitted successfully!");
+      });
+    </script>
   </body>
 </html>
